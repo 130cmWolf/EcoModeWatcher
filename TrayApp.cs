@@ -15,7 +15,9 @@ sealed class TrayApp : IDisposable
         _icon = stream != null ? new Icon(stream) : SystemIcons.Application;
 
         var menu = new ContextMenuStrip();
-        menu.Items.Add("(&e)xit", null, (_, _) => Exit());
+        menu.Items.Add("(&A)bout", null, (_, _) => new AboutForm().ShowDialog());
+        menu.Items.Add(new ToolStripSeparator());
+        menu.Items.Add("(&E)xit", null, (_, _) => Exit());
 
         _notifyIcon = new NotifyIcon
         {
