@@ -75,4 +75,4 @@ Windows API の `GetProcessInformation` / `SetProcessInformation` に
 
 ## ライセンス
 
-MIT
+MIT — [130cmWolf](https://github.com/130cmWolf/EcoModeWatcher)

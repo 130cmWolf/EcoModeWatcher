@@ -74,4 +74,4 @@ Monitoring loop (every `watch` ms)
 
 ## License
 
-MIT — [130cmWolf](https://github.com/130cmWolf/)
+MIT — [130cmWolf](https://github.com/130cmWolf/EcoModeWatcher)
