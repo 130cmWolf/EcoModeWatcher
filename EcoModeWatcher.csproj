@@ -11,9 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="EcoDisable.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <EmbeddedResource Include="EcoDisable.ico" />
     <None Update="setting.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

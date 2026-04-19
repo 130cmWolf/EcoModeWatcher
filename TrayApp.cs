@@ -8,8 +8,9 @@ sealed class TrayApp : IDisposable
 
     public TrayApp(AppSettings settings)
     {
-        var iconPath = Path.Combine(AppContext.BaseDirectory, "EcoDisable.ico");
-        var icon = File.Exists(iconPath) ? new Icon(iconPath) : SystemIcons.Application;
+        var asm = System.Reflection.Assembly.GetExecutingAssembly();
+        using var stream = asm.GetManifestResourceStream("EcoModeWatcher.EcoDisable.ico");
+        var icon = stream != null ? new Icon(stream) : SystemIcons.Application;
 
         var menu = new ContextMenuStrip();
         menu.Items.Add("(&e)xit", null, (_, _) => Exit());
