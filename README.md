@@ -1,14 +1,16 @@
-# EcoModeWatcher
+# NoNapChrome
 
-Chrome の効率モード（EcoQoS）を自動で解除するタスクトレイ常駐アプリです。
+昼寝している Chrome をたたき起こす、タスクトレイ常駐アプリです。  
+Chrome の効率モード（EcoQoS）を自動で検出・解除します。
 
 [English README](README-en.md)
 
 ## 概要
 
 Windows 11 は一定条件下でバックグラウンドプロセスを「効率モード」に移行し、CPU スロットリングをかけます。  
-Chrome がこの対象になると描画やスクリプト実行が低速化することがあります。  
-本アプリはバックグラウンドで定期的にプロセスを監視し、Chrome が効率モードになっていれば即座に解除します。
+Chrome がこの対象になると、描画やスクリプト実行が鈍くなることがあります。  
+NoNapChrome はそんな Chrome を見つけ次第たたき起こし、効率モードを解除します。
+昼寝は許しません。
 
 ## 機能
 
@@ -29,14 +31,14 @@ Chrome がこの対象になると描画やスクリプト実行が低速化す�
 ## インストール
 
 1. リリースページから最新の zip をダウンロードして展開する、または自分でビルドする
-2. `EcoModeWatcher.exe` を任意のフォルダに配置する
-3. `EcoModeWatcher.exe` をダブルクリックして実行する
+2. `NoNapChrome.exe` を任意のフォルダに配置する
+3. `NoNapChrome.exe` をダブルクリックして実行する
 
 ### 自分でビルドする場合
 
 ```bash
 git clone <repository-url>
-cd EcoModeWatcher
+cd NoNapChrome
 dotnet build -c Release
 ```
 
@@ -57,7 +59,7 @@ dotnet build -c Release
 
 ## 使い方
 
-1. `EcoModeWatcher.exe` を実行するとタスクトレイにアイコンが表示される
+1. `NoNapChrome.exe` を実行するとタスクトレイにアイコンが表示される
 2. 以降は自動で Chrome の効率モードを監視・解除し続ける
 3. 終了する場合はタスクトレイアイコンを右クリックし **Exit** を選択する
 
@@ -75,4 +77,4 @@ Windows API の `GetProcessInformation` / `SetProcessInformation` に
 
 ## ライセンス
 
-MIT — [130cmWolf](https://github.com/130cmWolf/EcoModeWatcher)
+MIT — [130cmWolf](https://github.com/130cmWolf/NoNapChrome)

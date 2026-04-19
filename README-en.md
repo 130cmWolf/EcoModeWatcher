@@ -1,14 +1,15 @@
-# EcoModeWatcher
+# NoNapChrome
 
-A system tray application that automatically disables Efficiency Mode (EcoQoS) for Chrome.
+Wake up, Chrome! A system tray app that jolts Chrome out of its nap.  
+Automatically detects and disables Chrome's Efficiency Mode (EcoQoS).
 
 [日本語版はこちら](README.md)
 
 ## Overview
 
 Windows 11 may place background processes into "Efficiency Mode," applying CPU throttling under certain conditions.  
-When Chrome is affected, rendering and script execution can become noticeably slower.  
-EcoModeWatcher runs silently in the background, periodically scanning processes and immediately disabling Efficiency Mode whenever Chrome is affected.
+When Chrome is caught napping like this, rendering and script execution slow to a crawl.  
+NoNapChrome watches over Chrome and wakes it up the moment it dozes off — no naps allowed.
 
 ## Features
 
@@ -29,14 +30,14 @@ EcoModeWatcher runs silently in the background, periodically scanning processes 
 ## Installation
 
 1. Download and extract the latest zip from the Releases page, or build from source
-2. Place `EcoModeWatcher.exe` in any folder
-3. Double-click `EcoModeWatcher.exe` to run
+2. Place `NoNapChrome.exe` in any folder
+3. Double-click `NoNapChrome.exe` to run
 
 ### Build from source
 
 ```bash
 git clone <repository-url>
-cd EcoModeWatcher
+cd NoNapChrome
 dotnet build -c Release
 ```
 
@@ -57,7 +58,7 @@ Edit `setting.json` in the same folder as the executable to adjust behavior.
 
 ## Usage
 
-1. Run `EcoModeWatcher.exe` — a tray icon will appear
+1. Run `NoNapChrome.exe` — a tray icon will appear
 2. The app continuously monitors and disables Chrome's Efficiency Mode in the background
 3. To exit, right-click the tray icon and select **Exit**
 
@@ -74,4 +75,4 @@ Monitoring loop (every `watch` ms)
 
 ## License
 
-MIT — [130cmWolf](https://github.com/130cmWolf/EcoModeWatcher)
+MIT — [130cmWolf](https://github.com/130cmWolf/NoNapChrome)
