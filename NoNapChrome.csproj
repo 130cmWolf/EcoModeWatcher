@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="EcoDisable.ico" />
+    <EmbeddedResource Include="NoNapChrome.ico" />
     <None Update="setting.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
