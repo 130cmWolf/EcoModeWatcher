@@ -74,7 +74,7 @@ static class EcoModeManager
 
     public static bool DisableEcoMode(int pid)
     {
-        var handle = OpenProcess(PROCESS_SET_INFORMATION | PROCESS_QUERY_LIMITED_INFORMATION, false, pid);
+        var handle = OpenProcess(PROCESS_SET_INFORMATION, false, pid);
         if (handle == IntPtr.Zero) return false;
         try
         {

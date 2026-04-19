@@ -4,20 +4,22 @@ sealed class TrayApp : IDisposable
 {
     readonly NotifyIcon _notifyIcon;
     readonly System.Threading.Timer _timer;
+    readonly Icon _icon;
     volatile bool _running = true;
+    bool _disposed;
 
     public TrayApp(AppSettings settings)
     {
         var asm = System.Reflection.Assembly.GetExecutingAssembly();
         using var stream = asm.GetManifestResourceStream("EcoModeWatcher.EcoDisable.ico");
-        var icon = stream != null ? new Icon(stream) : SystemIcons.Application;
+        _icon = stream != null ? new Icon(stream) : SystemIcons.Application;
 
         var menu = new ContextMenuStrip();
         menu.Items.Add("(&e)xit", null, (_, _) => Exit());
 
         _notifyIcon = new NotifyIcon
         {
-            Icon = icon,
+            Icon = _icon,
             Text = "EcoMode Watcher",
             ContextMenuStrip = menu,
             Visible = true,
@@ -29,25 +31,31 @@ sealed class TrayApp : IDisposable
     void Tick()
     {
         if (!_running) return;
-        foreach (var (name, pid) in EcoModeManager.GetEcoModeProcesses())
+        try
         {
-            if (name.Equals("chrome", StringComparison.OrdinalIgnoreCase))
-                EcoModeManager.DisableEcoMode(pid);
+            foreach (var (name, pid) in EcoModeManager.GetEcoModeProcesses())
+            {
+                if (name.Equals("chrome", StringComparison.OrdinalIgnoreCase))
+                    EcoModeManager.DisableEcoMode(pid);
+            }
         }
+        catch { }
     }
 
     void Exit()
     {
-        _running = false;
-        _timer.Dispose();
-        _notifyIcon.Visible = false;
+        Dispose();
         Application.Exit();
     }
 
     public void Dispose()
     {
+        if (_disposed) return;
+        _disposed = true;
+        _running = false;
+        _timer.Dispose();
         _notifyIcon.Visible = false;
         _notifyIcon.Dispose();
-        _timer.Dispose();
+        _icon.Dispose();
     }
 }
