@@ -12,7 +12,7 @@ sealed class TrayApp : IDisposable
     public TrayApp(AppSettings settings)
     {
         var asm = System.Reflection.Assembly.GetExecutingAssembly();
-        using var stream = asm.GetManifestResourceStream("EcoModeWatcher.EcoDisable.ico");
+        using var stream = asm.GetManifestResourceStream("NoNapChrome.NoNapChrome.ico");
         if (stream != null)
             _icon = new Icon(stream);
 
@@ -24,7 +24,7 @@ sealed class TrayApp : IDisposable
         _notifyIcon = new NotifyIcon
         {
             Icon = _icon ?? SystemIcons.Application,
-            Text = "EcoMode Watcher",
+            Text = "NoNapChrome",
             ContextMenuStrip = _menu,
             Visible = true,
         };

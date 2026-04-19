@@ -9,7 +9,7 @@ sealed class AboutForm : Form
         var version = Assembly.GetExecutingAssembly()
             .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "";
 
-        Text = "About EcoModeWatcher";
+        Text = "About NoNapChrome";
         FormBorderStyle = FormBorderStyle.FixedDialog;
         MaximizeBox = false;
         MinimizeBox = false;
@@ -18,13 +18,13 @@ sealed class AboutForm : Form
 
         var labelName = new Label
         {
-            Text = $"EcoModeWatcher  v{version}",
+            Text = $"NoNapChrome  v{version}",
             Font = new Font(Font.FontFamily, 11, FontStyle.Bold),
             AutoSize = true,
             Location = new Point(20, 20),
         };
 
-        const string url = "https://github.com/130cmWolf/EcoModeWatcher";
+        const string url = "https://github.com/130cmWolf/NoNapChrome";
         var link = new LinkLabel
         {
             Text = url,
