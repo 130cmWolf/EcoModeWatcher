@@ -2,6 +2,8 @@
 
 Chrome の効率モード（EcoQoS）を自動で解除するタスクトレイ常駐アプリです。
 
+[English README](README-en.md)
+
 ## 概要
 
 Windows 11 は一定条件下でバックグラウンドプロセスを「効率モード」に移行し、CPU スロットリングをかけます。  
