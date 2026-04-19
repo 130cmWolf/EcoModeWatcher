@@ -4,7 +4,8 @@ sealed class TrayApp : IDisposable
 {
     readonly NotifyIcon _notifyIcon;
     readonly System.Threading.Timer _timer;
-    readonly Icon _icon;
+    readonly ContextMenuStrip _menu;
+    readonly Icon? _icon;
     volatile bool _running = true;
     bool _disposed;
 
@@ -12,18 +13,19 @@ sealed class TrayApp : IDisposable
     {
         var asm = System.Reflection.Assembly.GetExecutingAssembly();
         using var stream = asm.GetManifestResourceStream("EcoModeWatcher.EcoDisable.ico");
-        _icon = stream != null ? new Icon(stream) : SystemIcons.Application;
+        if (stream != null)
+            _icon = new Icon(stream);
 
-        var menu = new ContextMenuStrip();
-        menu.Items.Add("(&A)bout", null, (_, _) => new AboutForm().ShowDialog());
-        menu.Items.Add(new ToolStripSeparator());
-        menu.Items.Add("(&E)xit", null, (_, _) => Exit());
+        _menu = new ContextMenuStrip();
+        _menu.Items.Add("(&A)bout", null, (_, _) => { using var f = new AboutForm(); f.ShowDialog(); });
+        _menu.Items.Add(new ToolStripSeparator());
+        _menu.Items.Add("(&E)xit", null, (_, _) => Exit());
 
         _notifyIcon = new NotifyIcon
         {
-            Icon = _icon,
+            Icon = _icon ?? SystemIcons.Application,
             Text = "EcoMode Watcher",
-            ContextMenuStrip = menu,
+            ContextMenuStrip = _menu,
             Visible = true,
         };
 
@@ -58,6 +60,7 @@ sealed class TrayApp : IDisposable
         _timer.Dispose();
         _notifyIcon.Visible = false;
         _notifyIcon.Dispose();
-        _icon.Dispose();
+        _menu.Dispose();
+        _icon?.Dispose();
     }
 }

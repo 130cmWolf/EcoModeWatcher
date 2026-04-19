@@ -14,7 +14,7 @@ sealed class AboutForm : Form
         MaximizeBox = false;
         MinimizeBox = false;
         StartPosition = FormStartPosition.CenterScreen;
-        ClientSize = new Size(320, 140);
+        ClientSize = new Size(400, 140);
 
         var labelName = new Label
         {
@@ -24,14 +24,15 @@ sealed class AboutForm : Form
             Location = new Point(20, 20),
         };
 
+        const string url = "https://github.com/130cmWolf/EcoModeWatcher";
         var link = new LinkLabel
         {
-            Text = "https://github.com/130cmWolf/EcoModeWatcher",
+            Text = url,
             AutoSize = true,
             Location = new Point(20, 60),
         };
         link.LinkClicked += (_, _) =>
-            Process.Start(new ProcessStartInfo(link.Text) { UseShellExecute = true });
+            Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
 
         var btnOk = new Button
         {
