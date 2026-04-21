@@ -68,11 +68,18 @@ dotnet build -c Release
 Windows API の `GetProcessInformation` / `SetProcessInformation` に  
 `ProcessPowerThrottling` クラスを指定することで効率モードの検出と解除を行っています。
 
-```
-監視ループ (watch ms ごと)
-  └─ 全プロセスをスキャン
-       └─ 効率モード有効 かつ プロセス名 == "chrome"
-            └─ SetProcessInformation で効率モードを解除
+```mermaid
+flowchart TD
+    A([起動]) --> B[setting.json を読み込む]
+    B --> C[タスクトレイアイコンを表示]
+    C --> D[watch ms 待機]
+    D --> E[全プロセスをスキャン]
+    E --> F{chrome かつ\n効率モード有効?}
+    F -- No --> D
+    F -- Yes --> G[SetProcessInformation で\n効率モードを解除]
+    G --> D
+    C --> H{{右クリック → Exit}}
+    H --> I([終了])
 ```
 
 ## ライセンス

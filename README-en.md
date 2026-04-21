@@ -66,11 +66,18 @@ Edit `setting.json` in the same folder as the executable to adjust behavior.
 
 Efficiency Mode is detected and disabled via the Windows API `GetProcessInformation` / `SetProcessInformation` with the `ProcessPowerThrottling` information class.
 
-```
-Monitoring loop (every `watch` ms)
-  └─ Scan all processes
-       └─ Efficiency Mode enabled AND process name == "chrome"
-            └─ Disable via SetProcessInformation
+```mermaid
+flowchart TD
+    A([Start]) --> B[Load setting.json]
+    B --> C[Show tray icon]
+    C --> D[Wait watch ms]
+    D --> E[Scan all processes]
+    E --> F{chrome AND\nEfficiency Mode enabled?}
+    F -- No --> D
+    F -- Yes --> G[Disable via\nSetProcessInformation]
+    G --> D
+    C --> H{{Right-click → Exit}}
+    H --> I([Exit])
 ```
 
 ## License
